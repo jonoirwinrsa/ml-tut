@@ -1,0 +1,19 @@
+image: python:3.8-bullseye
+port: 8000
+command:
+  - /bin/sh
+  - '-c'
+  - |
+    cd /opt/repos/repo
+    pip install -r requirements.txt
+    python app.py
+repositories:
+  dataset: <fraud-dataset-id>
+  mountPath: /opt/repos
+  repositories:
+    - url: <your-github-repo-url>
+      name: repo
+      ref: master
+resources:
+  replicas: 1
+  instanceType: C5
